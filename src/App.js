@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import Alert from './component/Alert';
-//import About from './component/About';
+import About from './component/About';
 import TextForm from './component/TextForm';
 import Textutil from './component/Textutil';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   const[mode,setmode]=useState('light')
@@ -33,14 +39,27 @@ function App() {
  
 
   return (
+    
     <div >
+      <Router>
      <Textutil toggle={handeltoggle} mode={mode} />
      <Alert alert={alert}/>
      <div className="container my-3">
-       <TextForm heading='Enter your text to Analyze' mode={mode} />
+       
+     <Routes>
+          <Route path="/about" element={<About />}/>
+            
+        
+          
+          <Route path="/" element={<TextForm heading='Enter your text to Analyze' mode={mode} />}/>
+          
+        
+        </Routes>
+       
      </div>
-    {/* <About/>*/}
+     </Router>
     </div>
+    
   );
 }
 
